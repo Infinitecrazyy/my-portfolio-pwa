@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="manifest" href="manifest.json">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aman Jha - Student Portfolio</title>
+  <meta name="description" content="Personal portfolio of Aman Jha, an AI&DS Engineering student." />
+
+  <style>
+    :root {
+      --bg: #0f172a;           /* slate-900 */
+      --panel: #111827;        /* gray-900 */
+      --muted: #94a3b8;        /* slate-400 */
+      --text: #e5e7eb;         /* gray-200 */
+      --primary: #38bdf8;      /* sky-400 */
+      --accent: #22d3ee;       /* cyan-400 */
+      --ring: rgba(56, 189, 248, 0.3);
+      --maxw: 1080px;
+      --radius: 14px;
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    /* Reset & base */
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background: radial-gradient(1200px 800px at 80% -20%, rgba(34,211,238,0.08), transparent 60%) var(--bg);
+      font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { color: var(--accent); }
+    img { max-width: 100%; display: block; }
+
+    /* Layout */
+    .container { max-width: var(--maxw); margin: 0 auto; padding: 0 1.25rem; }
+    .content { padding: 3.5rem 0; }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: saturate(180%) blur(10px);
+      background: linear-gradient(to bottom, rgba(15,23,42,0.85), rgba(15,23,42,0.55));
+      border-bottom: 1px solid rgba(148,163,184,0.12);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      min-height: 64px;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 0.75rem;
+      font-weight: 700; letter-spacing: 0.2px;
+    }
+    .brand .logo {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      box-shadow: 0 6px 18px rgba(34,211,238,0.3);
+    }
+    .brand span { color: var(--text); }
+
+    .nav-links {
+      display: flex; gap: 1rem; align-items: center;
+    }
+    .nav-links a {
+      color: var(--text);
+      padding: 0.5rem 0.75rem; border-radius: 8px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .nav-links a:hover { background: rgba(148,163,184,0.12); }
+
+    /* Hero */
+    .hero {
+      display: grid; gap: 2rem;
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: center;
+    }
+    .hero-card {
+      background: linear-gradient(180deg, rgba(17,24,39,0.9), rgba(17,24,39,0.7));
+      border: 1px solid rgba(148,163,184,0.14);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem;
+    }
+    .kicker {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      color: var(--muted); font-weight: 600; font-size: 0.9rem;
+      letter-spacing: 0.3px; text-transform: uppercase;
+    }
+    .kicker .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px var(--ring);
+    }
+    .hero h1 {
+      margin: 0.75rem 0 0.75rem;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      line-height: 1.15;
+    }
+    .hero p { color: var(--muted); margin: 0 0 1.25rem; }
+    .cta-row { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.7rem 1rem; border-radius: 12px;
+      font-weight: 600; border: 1px solid transparent;
+      transition: transform 0.08s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, rgba(56,189,248,0.25), rgba(34,211,238,0.25));
+      border-color: rgba(56,189,248,0.35);
+      color: var(--text);
+      box-shadow: 0 8px 22px rgba(34,211,238,0.25);
+    }
+    .btn-primary:hover { transform: translateY(-1px); }
+    .btn-ghost {
+      background: rgba(148,163,184,0.12);
+      border-color: rgba(148,163,184,0.18);
+      color: var(--text);
+    }
+
+    .hero-identity {
+      display: grid; place-items: center;
+      background: radial-gradient(280px 280px at 50% 45%, rgba(34,211,238,0.12), transparent 60%) var(--panel);
+      border: 1px solid rgba(148,163,184,0.14);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem;
+    }
+    .avatar {
+      width: 120px; height: 120px; border-radius: 50%;
+      background: linear-gradient(135deg, #1e293b, #0ea5e9);
+      border: 2px solid rgba(148,163,184,0.2);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.35), 0 0 0 10px var(--ring);
+      margin-bottom: 1rem;
+    }
+    .identity h2 { margin: 0.5rem 0 0.25rem; }
+    .identity .meta { color: var(--muted); font-size: 0.95rem; }
+
+    /* Sections */
+    section {
+      margin-top: 2.5rem;
+    }
+    .section-head {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .section-head h3 {
+      margin: 0;
+      font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    }
+    .section-head p { margin: 0; color: var(--muted); }
+
+    /* Cards & grids */
+    .grid {
+      display: grid; gap: 1rem;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .card {
+      background: linear-gradient(180deg, rgba(17,24,39,0.9), rgba(17,24,39,0.7));
+      border: 1px solid rgba(148,163,184,0.14);
+      border-radius: var(--radius);
+      padding: 1rem;
+      transition: transform 0.08s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .card:hover { transform: translateY(-2px); box-shadow: var(--shadow); border-color: rgba(56,189,248,0.35); }
+    .card h4 { margin: 0 0 0.5rem; }
+    .card p { margin: 0; color: var(--muted); }
+
+    /* Skills */
+    .skills {
+      display: grid; gap: 1rem; grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    .chip {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(148,163,184,0.12);
+      border: 1px solid rgba(148,163,184,0.18);
+      color: var(--text);
+      border-radius: 999px; padding: 0.5rem 0.75rem; font-weight: 600;
+    }
+    .chip .dot {
+      width: 10px; height: 10px; border-radius: 50%; background: var(--primary);
+    }
+
+    /* Timeline (Education) */
+    .timeline {
+      position: relative; padding-left: 1.5rem;
+    }
+    .timeline::before {
+      content: ""; position: absolute; top: 0; left: 8px; width: 2px; height: 100%;
+      background: rgba(148,163,184,0.2);
+    }
+    .timeline-item {
+      position: relative; margin: 1rem 0; padding-left: 0.75rem;
+    }
+    .timeline-item::before {
+      content: ""; position: absolute; left: -2px; top: 0.35rem;
+      width: 12px; height: 12px; border-radius: 50%; background: var(--accent);
+      box-shadow: 0 0 0 6px var(--ring);
+    }
+    .timeline-item h4 { margin: 0 0 0.25rem; }
+    .timeline-item p { margin: 0; color: var(--muted); }
+
+    /* Footer */
+    footer {
+      margin-top: 3rem; padding: 2rem 0;
+      border-top: 1px solid rgba(148,163,184,0.12);
+      color: var(--muted);
+    }
+    .socials { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+    .socials a {
+      padding: 0.4rem 0.6rem; border-radius: 8px;
+      background: rgba(148,163,184,0.12);
+      border: 1px solid rgba(148,163,184,0.18);
+      color: var(--text);
+    }
+    .socials a:hover { border-color: rgba(56,189,248,0.35); }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .hero { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .skills { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .nav-links { display: none; } /* keep simple: hide links on small screens */
+    }
+    @media (max-width: 640px) {
+      .grid { grid-template-columns: 1fr; }
+      .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .cta-row { flex-direction: column; }
+    }
+
+    /* Accessibility helpers */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+    .skip-link {
+      position: absolute; left: -9999px; top: -9999px;
+    }
+    .skip-link:focus {
+      left: 1rem; top: 1rem; z-index: 1000;
+      background: var(--panel); color: var(--text);
+      padding: 0.5rem 0.75rem; border-radius: 8px;
+      border: 1px solid rgba(148,163,184,0.3);
+      box-shadow: var(--shadow);
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header>
+    <div class="container nav" role="navigation" aria-label="Primary">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>Aman Jha</span>
+      </div>
+      <nav class="nav-links" aria-label="Sections">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container content">
+    <section class="hero" aria-label="Introduction">
+      <div class="hero-card">
+        <span class="kicker"><span class="dot" aria-hidden="true"></span>Hello, I’m</span>
+        <h1>Aman Jha</h1>
+        <p>
+          AI & Data Science Student based in Pune, India. I enjoy building intelligent systems, 
+          analyzing data patterns, and developing web solutions. This portfolio highlights my technical journey.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#projects">View projects</a>
+          <a class="btn btn-ghost" href="#contact">Get in touch</a>
+        </div>
+      </div>
+
+      <aside class="hero-identity" aria-label="Profile">
+        <div class="avatar" aria-hidden="true"></div>
+        <div class="identity">
+          <h2>Aman Jha</h2>
+          <p class="meta">Undergraduate • AI&DS • Class of 2026</p>
+        </div>
+      </aside>
+    </section>
+
+    <section id="about" aria-labelledby="about-title">
+      <div class="section-head">
+        <h3 id="about-title">About</h3>
+        <p>Short bio and focus areas</p>
+      </div>
+      <div class="card">
+        <p>
+          I’m a student focused on Artificial Intelligence and Data Science. I am passionate about 
+          solving complex problems through code, leveraging Python for data analysis, and exploring 
+          Neural Networks. I am also proficient in Front-end technologies to visualize my models.
+        </p>
+      </div>
+    </section>
+
+    <section id="projects" aria-labelledby="projects-title">
+      <div class="section-head">
+        <h3 id="projects-title">Projects</h3>
+        <p>Selected work and experiments</p>
+      </div>
+
+      <div class="grid" role="list">
+        <article class="card" role="listitem">
+          <h4>Stock Price Predictor</h4>
+          <p>A machine learning model to predict stock market trends using Python, LSTM neural networks, and historic financial data.</p>
+        </article>
+
+        <article class="card" role="listitem">
+          <h4>Disease Prediction System</h4>
+          <p>A data science project that analyzes patient medical records to predict the likelihood of diseases using classification algorithms.</p>
+        </article>
+
+        <article class="card" role="listitem">
+          <h4>Traffic Sign Recognition</h4>
+          <p>A computer vision application capable of identifying and classifying traffic signs in real-time using Convolutional Neural Networks (CNN).</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="skills" aria-labelledby="skills-title">
+      <div class="section-head">
+        <h3 id="skills-title">Skills</h3>
+        <p>Tools and technologies</p>
+      </div>
+
+      <div class="skills">
+        <span class="chip"><span class="dot"></span>Python</span>
+        <span class="chip"><span class="dot"></span>Data Structures</span>
+        <span class="chip"><span class="dot"></span>C++</span>
+        <span class="chip"><span class="dot"></span>Machine Learning</span>
+        <span class="chip"><span class="dot"></span>SQL</span>
+        <span class="chip"><span class="dot"></span>HTML5 & CSS3</span>
+        <span class="chip"><span class="dot"></span>JavaScript</span>
+        <span class="chip"><span class="dot"></span>Git & GitHub</span>
+      </div>
+    </section>
+
+    <section id="education" aria-labelledby="education-title">
+      <div class="section-head">
+        <h3 id="education-title">Education</h3>
+        <p>Timeline and achievements</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <h4>Zeal College Of Engineering</h4>
+          <p>B.E. in Artificial Intelligence & Data Science (AI&DS)</p>
+        </div>
+        <div class="timeline-item">
+          <h4>Don Bosco High School</h4>
+          <p>Secondary Education</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-title">
+      <div class="section-head">
+        <h3 id="contact-title">Contact</h3>
+        <p>Let’s build something</p>
+      </div>
+
+      <div class="card">
+        <p>
+          I’m open to internships, projects, and collaborations. Feel free to reach out via email or phone.
+        </p>
+        <p>
+          <strong>Email:</strong> <a href="mailto:amanom2727@gmail.com">amanom2727@gmail.com</a><br>
+          <strong>Phone:</strong> <a href="tel:+918408842575">+91 8408842575</a><br>
+          <strong>Location:</strong> Pune, India
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="socials" aria-label="Social links">
+        <a href="#" aria-label="GitHub">GitHub</a>
+        <a href="#" aria-label="LinkedIn">LinkedIn</a>
+        <a href="#" aria-label="Twitter">Twitter</a>
+        <a href="#" aria-label="Portfolio">Resume</a>
+      </div>
+      <p style="margin-top: 0.75rem;">
+        © <span id="year"></span> Aman Jha. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js')
+        .then(() => console.log('Service Worker Registered'))
+        .catch(err => console.log('Service Worker Failed', err));
+    });
+  }
+</script>
+</body>
+</html>
